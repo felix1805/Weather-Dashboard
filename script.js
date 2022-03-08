@@ -38,5 +38,20 @@ function displayCity(){
 $('#querycity').on('click', function(event) {
     event.preventDefault();
     var cityindex = $('#cityid').val().trim();
+    city.push(cityindex);
+
+    localStorageCities();
+    displayCity();
 
 })
+
+function weatherInfo(cityId2){
+    var qURL = "https://api.openweathermap.org/data/2.5/weather?q=" +cityName+ "&appid=" + key;
+
+    $('#currentweather').empty();
+    $.ajax({
+        url: qURL,
+    })
+    
+
+}
