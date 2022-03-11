@@ -10,8 +10,7 @@ function storedCit() {
     if (cityStorage !== null) {
         city = cityStorage;
     }
-    //displayCity();
-    //storedCit();
+   
 
 }
 
@@ -123,12 +122,3 @@ function displayDate() {
 }
 
 displayDate();
-// function currentDay(newDate) {
-//     var newDate = new Date();
-//     console.log(date);
-//     var month = newDate.getMonth() + 1;
-//     var day = newDate.getDate();
-
-//     var outputCurrentDate = newDate.getFullYear() + '/' + '0' + currentmonth + '/' + currentday;
-//     return outputCurrentDate;
-// }
