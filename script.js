@@ -84,7 +84,7 @@ function weatherInformation(cityId2) {
                         var dateInformation = currentDate.getFullYear() + '-' + currentMonth + '-' + currentDay;
                         var finalOutputDay = $('<h3>').text(dateInformation);
                         var tempInF = wInformation5.list[i].main.temp;
-                        var numericTemp = parseInt((tempInF);
+                        var numericTemp = parseInt((tempInF));
                         var currentTemp = $('<p>').text('Current Temp: ' +numericTemp+ "°F");
                         var currentHumidity = $('<p>').text('Current Humidity:' =wInformation5.list[i].main.humidity+ "%");
                         wInformationCard.append(finalOutputDay);
