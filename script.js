@@ -54,7 +54,7 @@ function weatherInformation(cityId2) {
         url: qURL
     })
         .then(function (wInformation) {
-            var tempFormula = parseInt((wInformation.main.temp) * 9 / 5 - 459);
+            var tempFormula = parseInt((wInformation.main.temp));
             var tempCity = $("<p>").text("Temperature: " + tempFormula + " °F");
             var humCity = $("<p>").text("Humidity: " + wInformation.main.humidity + " %");
             var wsCity = $("<p>").text("Wind Speed: " + wInformation.wind.speed + " mph");
@@ -65,7 +65,7 @@ function weatherInformation(cityId2) {
             $('#currentweather').append(wsCity);
             $('#currentweather').append(cityDesc);
 
-            var qURL5day = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityId2 + "&appid=" + key;
+            var qURL5day = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityId2 + "&appid=" + key + '&units=imperial';
             $.ajax({
                 url:qURL5day
             })
@@ -83,8 +83,8 @@ function weatherInformation(cityId2) {
                         var currentMonth = currentDate.getMonth()+1;
                         var dateInformation = currentDate.getFullYear() + '-' + currentMonth + '-' + currentDay;
                         var finalOutputDay = $('<h3>').text(dateInformation);
-                        var tempInKelvin = wInformation5.list[i].main.temp;
-                        var numericTemp = parseInt((tempInKelvin) *9/5-459);
+                        var tempInF = wInformation5.list[i].main.temp;
+                        var numericTemp = parseInt((tempInF);
                         var currentTemp = $('<p>').text('Current Temp: ' +numericTemp+ "°F");
                         var currentHumidity = $('<p>').text('Current Humidity:' =wInformation5.list[i].main.humidity+ "%");
                         wInformationCard.append(finalOutputDay);
