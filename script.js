@@ -1,7 +1,8 @@
 var key = "a12e022cb62b59c204d6c4c7065d99c2";
 var cities = $("cities");
 var city = [];
-
+var currentDate = moment().format('MMM Do');
+var displayDateEl = document.getElementById('currentDate')
 storedCit();
 
 function storedCit() {
@@ -47,7 +48,12 @@ $('#querycity').on('click', function (event) {
 });
 
 function weatherInformation(cityId2) {
-    var qURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityId2 + "&appid=" + key;
+    var qURL = 
+    "https://api.openweathermap.org/data/2.5/weather?q=" 
+    + cityId2 
+    + "&appid=" 
+    + key
+    + '&units=imperial';
 
     $('#currentweather').empty();
     $.ajax({
@@ -58,14 +64,18 @@ function weatherInformation(cityId2) {
             var tempCity = $("<p>").text("Temperature: " + tempFormula + " °F");
             var humCity = $("<p>").text("Humidity: " + wInformation.main.humidity + " %");
             var wsCity = $("<p>").text("Wind Speed: " + wInformation.wind.speed + " mph");
-
-            cityDesc = $('<h3>').text(wInformation.name + " " + currentDay());
+            cityDesc = $('<h3>').text(wInformation.name + " " + currentDate);
             $('#currentweather').append(tempCity);
             $('#currentweather').append(humCity);
             $('#currentweather').append(wsCity);
             $('#currentweather').append(cityDesc);
 
-            var qURL5day = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityId2 + "&appid=" + key + '&units=imperial';
+            var qURL5day = 
+            "https://api.openweathermap.org/data/2.5/forecast?q=" 
+            + cityId2 
+            + "&appid=" 
+            + key 
+            + '&units=imperial';
             $.ajax({
                 url:qURL5day
             })
@@ -86,7 +96,7 @@ function weatherInformation(cityId2) {
                         var tempInF = wInformation5.list[i].main.temp;
                         var numericTemp = parseInt((tempInF));
                         var currentTemp = $('<p>').text('Current Temp: ' +numericTemp+ "°F");
-                        var currentHumidity = $('<p>').text('Current Humidity:' =wInformation5.list[i].main.humidity+ "%");
+                        var currentHumidity = $('<p>').text('Current Humidity:' +wInformation5.list[i].main.humidity+ "%");
                         wInformationCard.append(finalOutputDay);
                         wInformationCard.append(currentTemp);
                         wInformationCard.append(currentHumidity);
@@ -104,12 +114,21 @@ function weatherInformation(cityId2) {
 
 
 }
-function currentDay(newDate) {
-    var newDate = new Date();
-    console.log(date);
-    var month = newDate.getMonth() + 1;
-    var day = newDate.getDate();
-
-    var outputCurrentDate = newDate.getFullYear() + '/' + '0' + currentmonth + '/' + currentday;
-    return outputCurrentDate;
+function displayDate() {
+    var today = document.createElement('p');
+    today.setAttribute('id', 'currentDate')
+    today.textContent = 'Today\'s Date is: ' + currentDate
+    displayDateEl.appendChild(today);
+    console.log(currentDate);
 }
+
+displayDate();
+// function currentDay(newDate) {
+//     var newDate = new Date();
+//     console.log(date);
+//     var month = newDate.getMonth() + 1;
+//     var day = newDate.getDate();
+
+//     var outputCurrentDate = newDate.getFullYear() + '/' + '0' + currentmonth + '/' + currentday;
+//     return outputCurrentDate;
+// }
